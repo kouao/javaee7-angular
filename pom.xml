@@ -24,11 +24,18 @@
         <version.plugin.jgitflow>1.0-m3</version.plugin.jgitflow>
         <version.plugin.jrebel>1.1.5</version.plugin.jrebel>
 
+        <!-- gs4  -->
+        <glassfish.home>/Users/phil/glassfish4</glassfish.home>
+        <domain.name>jcertif</domain.name>
+        <domain.username>jcertif</domain.username>
+        <domain.password>jcertif</domain.password>
+
         <!-- Dependencies -->
         <version.dependency.javaee>7.0</version.dependency.javaee>
     </properties>
 
     <build>
+        <finalName>jcertif-demo</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -71,6 +78,44 @@
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>
+
+
+            <plugin>
+                <groupId>org.wildfly.plugins</groupId>
+                <artifactId>wildfly-maven-plugin</artifactId>
+                <version>1.0.2.Final</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.glassfish.maven.plugin</groupId>
+                <artifactId>maven-glassfish-plugin</artifactId>
+                <version>2.1</version>
+                <configuration>
+                    <glassfishDirectory>${glassfish.home}</glassfishDirectory>
+                    <user>${domain.username}</user>
+                    <adminPassword>${domain.password}</adminPassword>
+                    <domain>
+                        <name>${domain.name}</name>
+                        <adminPort>4848</adminPort>
+                        <httpPort>8080</httpPort>
+                        <httpsPort>8443</httpsPort>
+                        <iiopPort>3700</iiopPort>
+                        <jmsPort>7676</jmsPort>
+                        <reuse>false</reuse>
+
+                    </domain>
+                    <components>
+                        <component>
+                            <name>${project.artifactId}</name>
+                            <!--
+                            <artifact>${project.build.directory}/artifacts/${project.build.finalName}.war</artifact>
+                            -->
+                            <artifact>target/${project.build.finalName}.war</artifact>
+                        </component>
+                    </components>
+                </configuration>
+            </plugin>
+
 
             <plugin>
                 <groupId>external.atlassian.jgitflow</groupId>
