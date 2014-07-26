@@ -24,12 +24,13 @@
         <version.plugin.jgitflow>1.0-m3</version.plugin.jgitflow>
         <version.plugin.jrebel>1.1.5</version.plugin.jrebel>
 
-        <!-- gs4  -->
+        <!-- gs4
         <glassfish.home>/Users/phil/glassfish4</glassfish.home>
         <domain.name>jcertif</domain.name>
         <domain.username>jcertif</domain.username>
         <domain.password>jcertif</domain.password>
-
+        -->
+        
         <!-- Dependencies -->
         <version.dependency.javaee>7.0</version.dependency.javaee>
     </properties>
@@ -86,6 +87,7 @@
                 <version>1.0.2.Final</version>
             </plugin>
 
+            <!--
             <plugin>
                 <groupId>org.glassfish.maven.plugin</groupId>
                 <artifactId>maven-glassfish-plugin</artifactId>
@@ -107,14 +109,12 @@
                     <components>
                         <component>
                             <name>${project.artifactId}</name>
-                            <!--
-                            <artifact>${project.build.directory}/artifacts/${project.build.finalName}.war</artifact>
-                            -->
                             <artifact>target/${project.build.finalName}.war</artifact>
                         </component>
                     </components>
                 </configuration>
             </plugin>
+            -->
 
 
             <plugin>
